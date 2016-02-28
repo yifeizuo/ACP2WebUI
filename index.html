@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Personalized Display</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+      <style>
+        .changeSize {
+          font-size: 48px;
+        }
+      </style>
+
+    </head>
+
+    <body class="w3-sand">
+      <!--//a unify div to show full info of a event -->
+      <div class="w3-image w3-padding">
+        <div id="divDialog" class="w3-modal">
+          <div class="w3-modal-content">
+            <img src="images/job1Info.png" style="width:100%">
+            <br>
+            <div class="w3-right">
+            <P>
+              <button id="sendToPhone" class="w3-btn w3-border w3-white w3-hover-khaki">send to phone</button>
+              <button id="closeTab" onclick="document.getElementById('divDialog').style.display='none'" class="w3-btn w3-border w3-white w3-hover-khaki">close</button>
+            <p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="w3-row-padding w3-margin-top" >
+          <!--Ongoing courses section1-->
+          <div class="w3-third">
+              <div class="w3-container">
+                <div class="w3-row">
+                  <div class="w3-col l6 w3-text-sand"><p>I am here<p></div>
+                  <div class="w3-col l6">
+                    <div id="course1" class="w3-left-align w3-border w3-border-blue w3-round-large" style="cursor:pointer">
+                      <p style="font-size:200%;">PR127</p>
+                      <p style="font-size:200%;">Beginner's Finnish</p>
+                      <p style="font-size:200%;">10:15-12:00</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+            <!--Onging courses section 2-->
+            <div class="w3-third">
+                <div class="w3-container">
+                  <div class="w3-row">
+                    <div class="w3-col l6 w3-text-sand"><p>I am here<p></div>
+                    <div class="w3-col l6">
+                      <div id="course2" class="w3-left-align w3-border w3-border-blue w3-round-large" style="cursor:pointer">
+                        <p style="font-size:200%;">PR127</p>
+                        <p style="font-size:200%;">Beginner's Finnish</p>
+                        <p style="font-size:200%;">10:15-12:00</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <!--Big bubble-->
+            <div class="w3-third">
+              <div class="w3-col l3 w3-text-sand"><p>Im<p></div>
+              <div class="w3-col l9">
+                <div id="bubble" class="w3-image">
+                  <img src="images/arc_new.png" style="width: 65%; cursor:pointer">
+                  <div class="w3-title w3-text-black" id="bubbleStream">
+                  <p>Haejong's birthday, 13.11.2015<p>
+                  <p>Cafe Lingua language games Today, 16:00<p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <!--Job, event, ads and courses part-->
+        <div class="w3-row-padding w3-margin-top">
+
+            <!--Job-->
+            <div class="w3-quarter">
+                <div class="w3-card-16" id="jobs">
+                    <div class="w3-container w3-text-deep-orange">
+                        <h1 align="center">JOBS</h1>
+                    </div>
+
+                    <!--First job info picture-->
+                    <div class="w3-image w3-padding">
+                      <img class="w3-round-large" src="images/Job1.png" style="width:100%; cursor:pointer" onclick="document.getElementById('job1Info').style.display='block'">
+                      <!--<div id="job1Info" class="w3-modal">
+                        <div class="w3-modal-content">
+                          <img src="images/job1Info.png" style="width:100%">
+                          <br>
+                          <div class="w3-right">
+                          <P>
+                            <button id="sendToPhone" onclick="sendPhoneFromDispaly()" class="w3-btn w3-border w3-white w3-hover-khaki">send to phone</button>
+                            <button id="closeTab" onclick="document.getElementById('job1Info').style.display='none'" class="w3-btn w3-border w3-white w3-hover-khaki">close</button>
+                          <p>
+                          </div>
+                        </div>
+                      </div>-->
+                    </div>
+
+                    <!--second job info picture-->
+                    <div class="w3-image w3-padding">
+                      <img class="w3-round-large" src="images/Job2.png" style="width:100%; cursor:pointer" onclick="document.getElementById('job2Info').style.display='block'">
+                      <!--<div id="job2Info" class="w3-modal">
+                        <div class="w3-modal-content">
+                          <img src="images/job2Info.png" style="width:100%">
+                          <br>
+                          <div class="w3-right">
+                          <P>
+                            <button id="sendToPhone" onclick="document.getElementById('job2InfoSent').style.display='none'" class="w3-btn w3-border w3-white w3-hover-khaki">send to phone</button>
+                            <button id="closeTab" onclick="document.getElementById('job2Info').style.display='none'" class="w3-btn w3-border w3-white w3-hover-khaki">close</button>
+                          <p>
+                          </div>
+                          <div id="job2InfoSent" class="w3-modal"></div>
+                        </div>
+                      </div>-->
+                    </div>
+                </div>
+          </div>
+            <!--events-->
+            <div class="w3-quarter">
+                <div class="w3-card-16" id="events">
+                    <div class="w3-container w3-text-deep-orange">
+                        <h1 align="center">EVENTS</h1>
+                    </div>
+
+                    <div class="w3-image w3-padding">
+                      <img class="w3-round-large" src="images/event1.png" style="width:100%; cursor:pointer">
+                    </div>
+                    <!--<img src="images/event1.png" style="width:100%">-->
+
+                    <div class="w3-image w3-padding">
+                      <img class="w3-round-large" src="images/event2.png" style="width:100%; cursor:pointer">
+                    </div>
+                    <!--<img src="images/event2.png" style="width:100%">-->
+                </div>
+            </div>
+
+            <!--adverts-->
+            <div class="w3-quarter">
+                <div class="w3-card-16" id="ads">
+                    <div class="w3-container w3-text-deep-orange">
+                        <h1 align="center">ADVERTS</h1>
+                    </div>
+
+                    <!--ad1 info picture-->
+                    <div class="w3-image w3-padding">
+                      <img class="w3-round-large" src="images/ad1.png" style="width:100%; cursor:pointer" onclick="document.getElementById('ad1Info').style.display='block'">
+                      <!--<div id="ad1Info" class="w3-modal">
+                        <div class="w3-modal-content">
+                          <img src="images/ad1Info.png" style="width:100%">
+                          <br>
+                          <div class="w3-right">
+                          <P>
+                            <button id="sendToPhone" onclick="document.getElementById('ad1InfoSent').style.display='none'" class="w3-btn w3-border w3-white w3-hover-khaki">send to phone</button>
+                            <button id="closeTab" onclick="document.getElementById('ad1Info').style.display='none'" class="w3-btn w3-border w3-white w3-hover-khaki">close</button>
+                          <p>
+                          </div>
+                          <div id="ad1InfoSent" class="w3-modal"></div>
+                        </div>
+                      </div>-->
+                    </div>
+
+
+                    <!--<img src="images/ad3.png" style="width:100%">-->
+                    <div class="w3-image w3-padding">
+                      <img class="w3-round-large" src="images/ad2.png" style="width:100%; cursor:pointer" onclick="document.getElementById('ad2Info').style.display='block'">
+                      <!--<div id="ad2Info" class="w3-modal">
+                        <div class="w3-modal-content">
+                          <img src="images/ad2Info.png" style="width:100%">
+                          <br>
+                          <div class="w3-right">
+                          <P>
+                            <button id="sendToPhone" onclick="document.getElementById('ad2InfoSent').style.display='none'" class="w3-btn w3-border w3-white w3-hover-khaki">send to phone</button>
+                            <button id="closeTab" onclick="document.getElementById('ad2Info').style.display='none'" class="w3-btn w3-border w3-white w3-hover-khaki">close</button>
+                          <p>
+                          </div>
+                          <div id="ad2InfoSent" class="w3-modal"></div>
+                        </div>
+                      </div>-->
+                    </div>
+                    <!--<img src="images/ad4.png" style="width:100%">-->
+                </div>
+            </div>
+
+            <!--course info-->
+            <div class="w3-quarter">
+                <div class="w3-card-16" id="courseMore">
+                    <div class="w3-container w3-text-deep-orange">
+                        <h1 align="center">COURSES</h1>
+                    </div>
+
+                    <div class="w3-card-2 w3-padding">
+                      <p><Open source software development></p>
+                    </div>
+                    <!--<img src="images/event1.png" style="width:100%">-->
+
+                    <div class="w3-card-2 w3-padding">
+                      <p><Big data application and process></p>
+                    </div>
+                    <!--<img src="images/event2.png" style="width:100%">-->
+                </div>
+            </div>
+          </div>
+      <script src="js/main.js"></script>
+    </body>
+</html>
