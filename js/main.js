@@ -30,7 +30,7 @@ function pollServer(data) {
 		"description": "Flow Festival 2016 12.to 14.8.2016 Suvilahti, Helsink, is this the world's most achingly cool festival? '-'Forbes",
 		"address": "sesami street 2",
 		"price" : "12,4€",
-		"image_url": "https://darw0tdisu865.cloudfront.net/media/photos/FlowFestival2016_V2.jpg",
+		"image_url": "http://www.visithelsinki.fi/sites/default/files/styles/grid_8_fixed_ratio/public/matko/tapahtuma/flow_samuli-pentti-flow-friday-2_1.jpg?itok=dMl-XELb",
 		"start_timestamp": 1456318976,
 		"end_timestamp": 1456918976
 	},
@@ -38,7 +38,7 @@ function pollServer(data) {
 		"id": 2,
 		"title": "Asd",
 		"categories" : [ 2,6,8],
-		"description": "asdasdasdasd",
+		"description": "Come and Join US: WELCOME BACK!",
 		"address": "sesami street 2",
 		"price" : "12,4€",
 		"image_url": "https://events.ucsb.edu/wp-content/uploads/2015/12/IMG-4707.jpg",
@@ -93,7 +93,7 @@ function pollServer(data) {
 		"id": 7,
 		"title": "Asd",
 		"categories" : [ 4,6,8],
-		"description": "asdasdasdasd",
+		"description": "hullut paivat -- Stockmann",
 		"address": "sesami street 2",
 		"price" : "12,4€",
 		"image_url": "http://www.ixonos.com/backend/sites/default/files/img-ixonoscom/content/hullut_paivat.png",
@@ -230,20 +230,20 @@ function updateBubble(bubbleList, divId) {
 					paragraph.innerHTML = item.description;
 
 					var sendBtn = document.getElementById("sendToPhone");
-					sendBtn.addEventListener("click", function() {
-							var _data = {
-									token: "test",
-									event_id: item.id
-							};
-							sendPhoneFromDispaly(_data, function(response) {
-									console.log(response);
-									if(response != "200")
-										alert("Sent error");//should be sent error, just using fake data;
-									else {
-										alert("Sent successfully!");
-										divDialog.style.display = "none";
-									}
-							});
+					$(sendBtn).off("click").on("click", function(e) {
+					    var _data = {
+					        token: "test",
+					        event_id: item.id
+					    };
+					    sendPhoneFromDispaly(_data, function(response) {
+					        console.log(response);
+					        if(response != "200")
+					            alert("Sent error!");
+					        else{
+					            alert("Sent successfully!");
+					            divDialog.style.display = "none";
+					        }
+					    });
 					});
 			} , false);
 		});
@@ -290,22 +290,22 @@ function update(oneEventList, divId) {
 					var paragraph = document.getElementById("eventDescription");
 					paragraph.innerHTML = item.description;
 
-			    var sendBtn = document.getElementById("sendToPhone");
-			    sendBtn.addEventListener("click", function() {
-			        var _data = {
-			            token: "test",
-			            event_id: item.id
-			        };
-			        sendPhoneFromDispaly(_data, function(response) {
-			            console.log(response);
-									if(response != "200")
-										alert("Sent error");
-									else {
-										alert("Sent successfully!");
-			            	divDialog.style.display = "none";
-									}
-			        });
-			    });
+					var sendBtn = document.getElementById("sendToPhone");
+					$(sendBtn).off("click").on("click", function(e) {
+					    var _data = {
+					        token: "test",
+					        event_id: item.id
+					    };
+					    sendPhoneFromDispaly(_data, function(response) {
+					        console.log(response);
+					        if(response != "200")
+					            alert("Sent error!");
+					        else{
+					            alert("Sent successfully!");
+					            divDialog.style.display = "none";
+					        }
+					    });
+					});
 			} , false);
 		});
 	}
@@ -327,7 +327,7 @@ function updateCourse(courseList, divId) {
 			newNode.id = item.id;
 			console.log(item.id);
 			newNode.style.cursor = "pointer"
-			newNode.className = "w3-display-container";
+			newNode.className = "w3-display-container w3-padding-xlarge w3-round-large";
 			newNode.style = "height: 260px";
 
 			var paragraph = document.createElement("div");
@@ -347,20 +347,20 @@ function updateCourse(courseList, divId) {
 					courseDiv.firstChild.nextElementSibling.childNodes[1].innerHTML = item.description;
 
 					var sendBtn = document.getElementById("sendToPhone");
-					sendBtn.addEventListener("click", function() {
-							var _data = {
-									token: "test",
-									event_id: item.id
-							};
-							sendPhoneFromDispaly(_data, function(response) {
-									console.log(response);
-									if(response != "200")
-										alert("Sent error");
-									else {
-										alert("Sent successfully!");
-										courseDiv.style.display = "none";
-									}
-							});
+					$(sendBtn).off("click").on("click", function(e) {
+					    var _data = {
+					        token: "test",
+					        event_id: item.id
+					    };
+					    sendPhoneFromDispaly(_data, function(response) {
+					        console.log(response);
+					        if(response != "200")
+					            alert("Sent error!");
+					        else{
+					            alert("Sent successfully!");
+					            divDialog.style.display = "none";
+					        }
+					    });
 					});
 			} , false);
 		});
