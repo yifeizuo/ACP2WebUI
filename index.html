@@ -15,21 +15,39 @@
     </head>
 
     <body class="w3-sand">
-      <!--//a unify div to show full info of a event -->
+      <!--//a unify div to show full info of a event of Jobs, events, and ads-->
       <div class="w3-image w3-padding">
         <div id="divDialog" class="w3-modal">
           <div class="w3-modal-content">
             <img src="images/job1Info.png" style="width:100%">
             <br>
             <div class="w3-right">
-            <P>
-              <button id="sendToPhone" class="w3-btn w3-border w3-white w3-hover-khaki">send to phone</button>
-              <button id="closeTab" onclick="document.getElementById('divDialog').style.display='none'" class="w3-btn w3-border w3-white w3-hover-khaki">close</button>
-            <p>
+              <p id="eventDescription" style="background-color:white; font-size: 200%"></p>
+              <br>
+              <P>
+                <button id="sendToPhone" class="w3-btn w3-border w3-white w3-hover-khaki">send to phone</button>
+                <button id="closeTab" onclick="document.getElementById('divDialog').style.display='none'" class="w3-btn w3-border w3-white w3-hover-khaki">close</button>
+              <p>
             </div>
           </div>
         </div>
       </div>
+
+      <!--//a unify div to show full info of a event of courses-->
+    <div class="w3-container">
+      <div id="courseDiv" class="w3-modal">
+        <div class="w3-modal-content">
+          <p></p>
+          <br>
+          <div class="w3-right">
+          <P>
+            <button id="sendToPhone" class="w3-btn w3-border w3-white w3-hover-khaki">send to phone</button>
+            <button id="closeTab" onclick="document.getElementById('courseDiv').style.display='none'" class="w3-btn w3-border w3-white w3-hover-khaki">close</button>
+          <p>
+          </div>
+        </div>
+      </div>
+    </div>
 
         <div class="w3-row-padding w3-margin-top" >
           <!--Ongoing courses section1-->
@@ -38,7 +56,7 @@
                 <div class="w3-row">
                   <div class="w3-col l6 w3-text-sand"><p>I am here<p></div>
                   <div class="w3-col l6">
-                    <div id="course1" class="w3-left-align w3-border w3-border-blue w3-round-large" style="cursor:pointer">
+                    <div id="course1" class="w3-left-align w3-border w3-border-blue w3-round-large" >
                       <p style="font-size:200%;">PR127</p>
                       <p style="font-size:200%;">Beginner's Finnish</p>
                       <p style="font-size:200%;">10:15-12:00</p>
@@ -53,10 +71,10 @@
                   <div class="w3-row">
                     <div class="w3-col l6 w3-text-sand"><p>I am here<p></div>
                     <div class="w3-col l6">
-                      <div id="course2" class="w3-left-align w3-border w3-border-blue w3-round-large" style="cursor:pointer">
-                        <p style="font-size:200%;">PR127</p>
-                        <p style="font-size:200%;">Beginner's Finnish</p>
-                        <p style="font-size:200%;">10:15-12:00</p>
+                      <div id="course2" class="w3-left-align w3-border w3-border-blue w3-round-large">
+                        <p style="font-size:200%;">L7</p>
+                        <p style="font-size:200%;">medical computing</p>
+                        <p style="font-size:200%;">13:30-14:30</p>
                       </div>
                     </div>
                   </div>
@@ -67,7 +85,7 @@
             <div class="w3-third">
               <div class="w3-col l3 w3-text-sand"><p>Im<p></div>
               <div class="w3-col l9">
-                <div id="bubble" class="w3-image">
+                <div id="bubble" class="w3-display-container">
                   <img src="images/arc_new.png" style="width: 65%; cursor:pointer">
                   <div class="w3-title w3-text-black" id="bubbleStream">
                   <p>Haejong's birthday, 13.11.2015<p>
@@ -198,12 +216,14 @@
                     </div>
 
                     <div class="w3-card-2 w3-padding">
-                      <p><Open source software development></p>
+                      <p>Open source software development</p>
                     </div>
                     <!--<img src="images/event1.png" style="width:100%">-->
-
+                    <br>
+                    <br>
+                    <br>
                     <div class="w3-card-2 w3-padding">
-                      <p><Big data application and process></p>
+                      <p>Big data application and process</p>
                     </div>
                     <!--<img src="images/event2.png" style="width:100%">-->
                 </div>

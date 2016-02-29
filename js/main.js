@@ -27,10 +27,10 @@ function pollServer(data) {
 		"id": 1,
 		"title": "Asd",
 		"categories" : [ 1,6,7],
-		"description": "asdasdasdasd",
+		"description": "Flow Festival 2016 12.to 14.8.2016 Suvilahti, Helsink, is this the world's most achingly cool festival? '-'Forbes",
 		"address": "sesami street 2",
 		"price" : "12,4€",
-		"image_url": "https://www.petfinder.com/wp-content/uploads/2012/11/140272627-grooming-needs-senior-cat-632x475.jpg",
+		"image_url": "https://darw0tdisu865.cloudfront.net/media/photos/FlowFestival2016_V2.jpg",
 		"start_timestamp": 1456318976,
 		"end_timestamp": 1456918976
 	},
@@ -49,7 +49,7 @@ function pollServer(data) {
 		"id": 3,
 		"title": "Asd",
 		"categories" : [ 3,6,8],
-		"description": "asdasdasdasd",
+		"description": "Are you interested in recruiting or finding a job in Europe? Then the European Job Days are exactly what you need! European Job Days are dynamic recruitment events that bring jobseekers and employers together. Jobseekers can find not only recruitment opportunities but also practical information and...",
 		"address": "sesami street 2",
 		"price" : "12,4€",
 		"image_url": "https://img.evbuc.com/https%3A%2F%2Fimg.evbuc.com%2Fhttp%253A%252F%252Fcdn.evbuc.com%252Fimages%252F17381208%252F103917075991%252F1%252Foriginal.jpg%3Frect%3D206%252C0%252C440%252C220%26s%3Dbde907500caccf1af329f6853f3a1285?h=230&w=460&s=cb7a788493f79f877b4dffd2129be012",
@@ -82,7 +82,7 @@ function pollServer(data) {
 		"id": 6,
 		"title": "Asd",
 		"categories" : [ 4,6,8],
-		"description": "asdasdasdasd",
+		"description": "McDonalds",
 		"address": "sesami street 2",
 		"price" : "12,4€",
 		"image_url": "http://edge.alluremedia.com.au/m/l/2014/08/McDonalds.jpg",
@@ -92,11 +92,33 @@ function pollServer(data) {
 	{
 		"id": 7,
 		"title": "Asd",
-		"categories" : [ 8,6,8],
+		"categories" : [ 4,6,8],
 		"description": "asdasdasdasd",
 		"address": "sesami street 2",
 		"price" : "12,4€",
-		"image_url": "http://edge.alluremedia.com.au/m/l/2014/08/McDonalds.jpg",
+		"image_url": "http://www.ixonos.com/backend/sites/default/files/img-ixonoscom/content/hullut_paivat.png",
+		"start_timestamp": 1456318976,
+		"end_timestamp": 1456918976
+	},
+	{
+		"id": 8,
+		"title": "Asd",
+		"categories" : [ 5,6,8],
+		"description": "Machine Learning Lecture TS107",
+		"address": "sesami street 2",
+		"price" : "12,4€",
+		"image_url": "null",
+		"start_timestamp": 1456318976,
+		"end_timestamp": 1456918976
+	},
+	{
+		"id": 9,
+		"title": "Asd",
+		"categories" : [ 5,6,8],
+		"description": "Big data process TS127",
+		"address": "sesami street 2",
+		"price" : "12,4€",
+		"image_url": "null",
 		"start_timestamp": 1456318976,
 		"end_timestamp": 1456918976
 	}];
@@ -194,6 +216,8 @@ function updateBubble(bubbleList, divId) {
 			var newNode = document.createElement("p");
 			console.log(item.description);
 			newNode.innerHTML = item.description;
+			newNode.className = "w3-display-topleft w3-xlarge w3-padding-xlarge";
+			newNode.style = "cursor: pointer";
 			div.appendChild(newNode);
 
 			//create new popup window to download info of bubble
@@ -202,6 +226,8 @@ function updateBubble(bubbleList, divId) {
 					var divDialog = document.getElementById("divDialog");
 					divDialog.style.display = "block";
 					divDialog.firstChild.nextElementSibling.childNodes[1].src = item.image_url;
+					var paragraph = document.getElementById("eventDescription");
+					paragraph.innerHTML = item.description;
 
 					var sendBtn = document.getElementById("sendToPhone");
 					sendBtn.addEventListener("click", function() {
@@ -212,7 +238,7 @@ function updateBubble(bubbleList, divId) {
 							sendPhoneFromDispaly(_data, function(response) {
 									console.log(response);
 									if(response != "200")
-										alert("Sent error");
+										alert("Sent error");//should be sent error, just using fake data;
 									else {
 										alert("Sent successfully!");
 										divDialog.style.display = "none";
@@ -261,6 +287,8 @@ function update(oneEventList, divId) {
 			    var divDialog = document.getElementById("divDialog");
 			    divDialog.style.display = "block";
 			    divDialog.firstChild.nextElementSibling.childNodes[1].src = item.image_url;
+					var paragraph = document.getElementById("eventDescription");
+					paragraph.innerHTML = item.description;
 
 			    var sendBtn = document.getElementById("sendToPhone");
 			    sendBtn.addEventListener("click", function() {
@@ -285,25 +313,38 @@ function update(oneEventList, divId) {
 
 function updateCourse(courseList, divId) {
 	var div = document.getElementById(divId);
-		var childDivs = div.getElementsByTagName("p");
+	if (div.firstChild) {
+		var TITLE_DIV = div.firstChild;
+		var childDivs = div.getElementsByTagName("div");
 		var len = childDivs.length;
-		for (i = 0; i < len; i++) {
-			div.removeChild(childDivs[0]);
+		for (i = 1; i < len; i++) {
+			div.removeChild(childDivs[1]);
 		}
 
 		courseList.forEach(function(item) {
-			var newNode = document.createElement("p");
+			var newNode = document.createElement("div");
+
+			newNode.id = item.id;
+			console.log(item.id);
+			newNode.style.cursor = "pointer"
+			newNode.className = "w3-display-container";
+			newNode.style = "height: 260px";
+
+			var paragraph = document.createElement("div");
+			paragraph.innerHTML = item.description;
+			paragraph.className = "w3-display-topleft w3-xlarge w3-padding-xlarge";
+			//$(paragraph).height(260);
+
 			console.log(item.description);
-			newNode.innerHTML = item.description;
+			newNode.appendChild(paragraph);
 			div.appendChild(newNode);
 
 			//create new popup window to download info of bubble
-			newNode.addEventListener("click", function() {
+			paragraph.addEventListener("click", function() {
 					console.log(item.image_url);
-					var divDialog = document.getElementById("divDialog");
-					divDialog.style.display = "block";
-					divDialog.firstChild.nextElementSibling.childNodes[1].src = item.image_url;
-					divDialog.firstChild.nextElementSibling.childNodes[1].innerHTML = item.description;
+					var courseDiv = document.getElementById("courseDiv");
+					courseDiv.style.display = "block";
+					courseDiv.firstChild.nextElementSibling.childNodes[1].innerHTML = item.description;
 
 					var sendBtn = document.getElementById("sendToPhone");
 					sendBtn.addEventListener("click", function() {
@@ -317,10 +358,11 @@ function updateCourse(courseList, divId) {
 										alert("Sent error");
 									else {
 										alert("Sent successfully!");
-										divDialog.style.display = "none";
+										courseDiv.style.display = "none";
 									}
 							});
 					});
 			} , false);
 		});
+	}
 }
