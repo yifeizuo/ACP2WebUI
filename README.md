@@ -10,3 +10,5 @@ The UI our team designed is originally looks like:
 and when I finnished, it looks like:
 ![alt tag](https://github.com/yifeizuo/screenshots/blob/master/Personalized%20Display.png)
 
+Also, you could interact with the public display and download useful info to you mobile phone.
+![alt tag](https://github.com/yifeizuo/screenshots/blob/master/Personalized%20Display%20job.png)
