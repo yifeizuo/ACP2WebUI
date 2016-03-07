@@ -5,8 +5,8 @@ The Web UI is a part of Personalized Public Display project, where you can see p
 The Web page on public display is working together with mobile phones, back-end server and a hardware to detected mobile phones.
 
 The UI our team designed is originally looks like:
-
+![alt tag](https://github.com/yifeizuo/screenshots/blob/master/Picture1.png)
 
 and when I finnished, it looks like:
-
+![alt tag](https://github.com/yifeizuo/screenshots/blob/master/Personalized%20Display.png)
 
