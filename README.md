@@ -1,4 +1,4 @@
-#ACP2WebUI
+#Personalised-Public-Display--Web-UI
 
 The Web UI is a part of Personalized Public Display project, where you can see personalised information such as ADs, events from facebook, or job info which you might interested in. Only when you are very close to public display, and your mobile phone has been detected by the public display, can you see the info there. And considering privacy, only you know what info on the screen is specialised for you.
 
