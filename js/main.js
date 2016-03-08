@@ -1,190 +1,90 @@
+var token = getUrlParameter('token');
+var categoriesMap = {};
+var categoriesArr = [];
+var eventList = [], jobList = [], adList = [], bubbleList = [], courseList = [];
+var debug_url = "https://acp.velho.xyz";
 $(document).ready(function(){
-	var DISPLAY_REQUEST = {
-		token: "test",
-		categories: [1,2,3,4,5],
-		limit: 10
-	};
+	console.log("TOKEN FROM URL:", token);
 
 	var NOTIFY_DEVICE = {
 		token: "test",
 		event_id: 1
 	};
 
-	pollServer(DISPLAY_REQUEST);
-	//sendPhoneFromDispaly(NOTIFY_DEVICE, function(){});
-
 	$.ajax({
-		url: "https://acp.velho.xyz/categories",
+		url: (debug_url+"/categories"),
 		type: "GET",
 		success: function(response) {
-			console.log(response);
+			for (var i = response.length - 1; i >= 0; i--) {
+				categoriesMap[response[i].category] = response[i].id;
+				categoriesArr.push(response[i].id);
+			}
+			console.log("Got categories:", categoriesMap);
+			pollServer();
+		},
+		error: function(err) {
+			console.log(err);
 		}
 	});
 });
 
-function pollServer(data) {
-	var DisplayResponse = [{
-		"id": 1,
-		"title": "Asd",
-		"categories" : [ 1,6,7],
-		"description": "Flow Festival 2016 12.to 14.8.2016 Suvilahti, Helsink, is this the world's most achingly cool festival? '-'Forbes",
-		"address": "sesami street 2",
-		"price" : "12,4€",
-		"image_url": "http://www.visithelsinki.fi/sites/default/files/styles/grid_8_fixed_ratio/public/matko/tapahtuma/flow_samuli-pentti-flow-friday-2_1.jpg?itok=dMl-XELb",
-		"start_timestamp": 1456318976,
-		"end_timestamp": 1456918976
-	},
-	{
-		"id": 2,
-		"title": "Asd",
-		"categories" : [ 2,6,8],
-		"description": "Come and Join US: WELCOME BACK!",
-		"address": "sesami street 2",
-		"price" : "12,4€",
-		"image_url": "https://events.ucsb.edu/wp-content/uploads/2015/12/IMG-4707.jpg",
-		"start_timestamp": 1456318976,
-		"end_timestamp": 1456918976
-	},
-	{
-		"id": 3,
-		"title": "Asd",
-		"categories" : [ 3,6,8],
-		"description": "Are you interested in recruiting or finding a job in Europe? Then the European Job Days are exactly what you need! European Job Days are dynamic recruitment events that bring jobseekers and employers together. Jobseekers can find not only recruitment opportunities but also practical information and...",
-		"address": "sesami street 2",
-		"price" : "12,4€",
-		"image_url": "https://img.evbuc.com/https%3A%2F%2Fimg.evbuc.com%2Fhttp%253A%252F%252Fcdn.evbuc.com%252Fimages%252F17381208%252F103917075991%252F1%252Foriginal.jpg%3Frect%3D206%252C0%252C440%252C220%26s%3Dbde907500caccf1af329f6853f3a1285?h=230&w=460&s=cb7a788493f79f877b4dffd2129be012",
-		"start_timestamp": 1456318976,
-		"end_timestamp": 1456918976
-	},
-	{
-		"id": 4,
-		"title": "Asd",
-		"categories" : [ 3,6,8],
-		"description": "asdasdasdasd",
-		"address": "sesami street 2",
-		"price" : "12,4€",
-		"image_url": "http://na2.www.gartner.com/imagesrv/careers/images/feature/featured-img-1.jpg;wa31c0ad993903c763",
-		"start_timestamp": 1456318976,
-		"end_timestamp": 1456918976
-	},
-	{
-		"id": 5,
-		"title": "Asd",
-		"categories" : [ 2,6,8],
-		"description": "asdasdasdasd",
-		"address": "sesami street 2",
-		"price" : "12,4€",
-		"image_url": "https://img.evbuc.com/https%3A%2F%2Fimg.evbuc.com%2Fhttp%253A%252F%252Fcdn.evbuc.com%252Fimages%252F17296008%252F90078831641%252F1%252Foriginal.jpg%3Frect%3D0%252C0%252C1688%252C844%26s%3D0907d673a969443566159edd76c75283?h=230&w=460&s=c084508066a4752c0e4d2e29246b2c41",
-		"start_timestamp": 1456318976,
-		"end_timestamp": 1456918976
-	},
-	{
-		"id": 6,
-		"title": "Asd",
-		"categories" : [ 4,6,8],
-		"description": "McDonalds",
-		"address": "sesami street 2",
-		"price" : "12,4€",
-		"image_url": "http://edge.alluremedia.com.au/m/l/2014/08/McDonalds.jpg",
-		"start_timestamp": 1456318976,
-		"end_timestamp": 1456918976
-	},
-	{
-		"id": 7,
-		"title": "Asd",
-		"categories" : [ 4,6,8],
-		"description": "hullut paivat -- Stockmann",
-		"address": "sesami street 2",
-		"price" : "12,4€",
-		"image_url": "http://www.ixonos.com/backend/sites/default/files/img-ixonoscom/content/hullut_paivat.png",
-		"start_timestamp": 1456318976,
-		"end_timestamp": 1456918976
-	},
-	{
-		"id": 8,
-		"title": "Asd",
-		"categories" : [ 5,6,8],
-		"description": "Machine Learning Lecture TS107",
-		"address": "sesami street 2",
-		"price" : "12,4€",
-		"image_url": "null",
-		"start_timestamp": 1456318976,
-		"end_timestamp": 1456918976
-	},
-	{
-		"id": 9,
-		"title": "Asd",
-		"categories" : [ 5,6,8],
-		"description": "Big data process TS127",
-		"address": "sesami street 2",
-		"price" : "12,4€",
-		"image_url": "null",
-		"start_timestamp": 1456318976,
-		"end_timestamp": 1456918976
-	}];
+function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+
+function pollServer() {
+	getEvents(1, [categoriesMap['bubble']], updateBubble, 'bubbleStream');
+	getEvents(2, [categoriesMap['event']], update, 'events');
+	getEvents(2, [categoriesMap['job']], update, 'jobs');
+	getEvents(2, [categoriesMap['adverisement']], update, 'ads');
+	getEvents(4, [categoriesMap['course']], updateCourse, 'courseMore');
+  //getEvents(10, [categoriesMap['course']], updateCourseDouble, 'course1');
+  //getEvents(10, [categoriesMap['course']], updateCourseDouble, 'course2');
+	setTimeout(function() {
+		pollServer();
+	}, 5000);
+}
+
+function getEvents(limit, cat, callback, divId) {
+	var req = {
+		token: token,
+		categories: cat,
+		limit: limit
+	}
 
 	$.ajax({
-		url: "https://acp.velho.xyz/display/events",
+		url: debug_url+"/display/events",
 		type: "POST",
-		data: JSON.stringify(data),
+		data: JSON.stringify(req),
 		contentType: "application/json; charset=utf-8",
-  	dataType: "json",
-		success: function(response) {
-			console.log("have response from server");
-			//do sth
-			response = DisplayResponse;
-			/*setTimeout(function() {
-				pollServer(data);
-			}, 5000);*/
-
-			var response = DisplayResponse;
-			var length = response.length;
-			var eventList = [], jobList = [], adList = [], bubbleList = [], courseList = [];
-
-			response.forEach(function(item){
-			  switch (item.categories[0]) {
-			      //bubble
-			    case 1:
-			      bubbleList.push(item);
-						break;
-			    case 2:
-			      eventList.push(item);
-						break;
-			    case 3:
-			      jobList.push(item);
-						break;
-			    case 4:
-			      adList.push(item);
-						break;
-			    case 5:
-			      courseList.push(item);
-						break;
-					default:
-						break;
-			  }
-			});
-			console.log("eventList");
-			console.log(eventList);
-			console.log(bubbleList);
-
-			updateBubble(bubbleList, "bubbleStream");
-
-			update(eventList, "events");
-			update(jobList, "jobs");
-			update(adList, "ads");
-
-			updateCourse(courseList,"courseMore");
+  		dataType: "json",
+		crossDomain: true,
+		success: function(data) {
+			console.log("Got events:", data);
+			callback(data, divId);
 		},
-		fail: function(){
-			console.log("fail");
+
+		error: function(err){
+			console.log(err);
 		},
-		crossDomain: true
 	});
+
 }
 
 function sendPhoneFromDispaly(data, callback) {
 	$.ajax({
-		url: "https://acp.velho.xyz/display/notify",
+		url: debug_url+"/display/notify",
 		type: "POST",
 		data: JSON.stringify(data),
 		contentType: "application/json; charset=utf-8",
@@ -271,6 +171,7 @@ function update(oneEventList, divId) {
 			//put img into the div "newNode"
 			var img = document.createElement("img");
 			img.src= item.image_url;
+      img.alt = item.title;
 			img.className = "w3-round-large";
 			img.style.width = "100%";
 			img.style.cursor = "pointer";
@@ -278,6 +179,13 @@ function update(oneEventList, divId) {
 
 			//append img to the "newNode"
 			newNode.appendChild(img);
+      var divTitle = document.createElement("p");
+
+      divTitle.style = "margin:0px 32px 0px 32px; width: 87.5%; position:absolute;bottom:5%;left:0;color:white; background-color: black; text-align:center; padding:4%; opacity:0.8";
+
+      divTitle.innerHTML = item.title;
+
+      newNode.appendChild(divTitle);
 			//append div into events
 			div.appendChild(newNode);
 
@@ -315,54 +223,203 @@ function updateCourse(courseList, divId) {
 	var div = document.getElementById(divId);
 	if (div.firstChild) {
 		var TITLE_DIV = div.firstChild;
-		var childDivs = div.getElementsByTagName("div");
+    var childDivs = div.childNodes;
+		//var childDivs = div.getElementsByTagName("div");
 		var len = childDivs.length;
-		for (i = 1; i < len; i++) {
-			div.removeChild(childDivs[1]);
+		for (i = len - 1; i > 1; i--) {
+			div.removeChild(childDivs[i]);
 		}
 
+    var childDivs = document.getElementById("course1").childNodes;
+    var len = childDivs.length;
+    for (i = len - 1; i > 0; i--) {
+			document.getElementById("course1").removeChild(childDivs[i]);
+		}
+    var childDivs = document.getElementById("course2").childNodes;
+    var len = childDivs.length;
+    for (i = len - 1; i > 0; i--) {
+			document.getElementById("course2").removeChild(childDivs[i]);
+		}
+    var index = 0;
 		courseList.forEach(function(item) {
+      index++;
 			var newNode = document.createElement("div");
+      if(index>2) {
+        newNode.id = item.id;
+        console.log(item.id);
+        newNode.style.cursor = "pointer"
+        newNode.className = "w3-display-container w3-padding-xlarge w3-round-large";
+        newNode.style = "height: 260px";
 
-			newNode.id = item.id;
-			console.log(item.id);
-			newNode.style.cursor = "pointer"
-			newNode.className = "w3-display-container w3-padding-xlarge w3-round-large";
-			newNode.style = "height: 260px";
+        var paragraph = document.createElement("div");
+        var date = new Date(item.start_timestamp*1000);
+        // Hours part from the timestamp
+        var hours = date.getHours();
+        // Minutes part from the timestamp
+        var minutes = "0" + date.getMinutes();
+        var formattedStart = hours + ':' + minutes.substr(-2);
+        var date = new Date(item.end_timestamp*1000);
+        // Hours part from the timestamp
+        var hours = date.getHours();
+        // Minutes part from the timestamp
+        var minutes = "0" + date.getMinutes();
+        var formattedEnd = hours + ':' + minutes.substr(-2);
+        paragraph.innerHTML = "<p>"+item.title + "</p><p>"+
+                            item.address + "</p><p>"+formattedStart+"-"+formattedEnd+"</p>";
+        // paragraph.innerHTML = item.description;
+        paragraph.className = "w3-display-topleft w3-xlarge w3-padding-xlarge";
+        //$(paragraph).height(260);
 
-			var paragraph = document.createElement("div");
-			paragraph.innerHTML = item.description;
-			paragraph.className = "w3-display-topleft w3-xlarge w3-padding-xlarge";
-			//$(paragraph).height(260);
+        console.log(item.description);
+        newNode.appendChild(paragraph);
 
-			console.log(item.description);
-			newNode.appendChild(paragraph);
-			div.appendChild(newNode);
+        div.appendChild(newNode);
 
-			//create new popup window to download info of bubble
-			paragraph.addEventListener("click", function() {
-					console.log(item.image_url);
-					var courseDiv = document.getElementById("courseDiv");
-					courseDiv.style.display = "block";
-					courseDiv.firstChild.nextElementSibling.childNodes[1].innerHTML = item.description;
+        //create new popup window to download info of bubble
+        paragraph.addEventListener("click", function() {
+            console.log(item.image_url);
+            var courseDiv = document.getElementById("courseDiv");
+            courseDiv.style.display = "block";
+            courseDiv.firstChild.nextElementSibling.childNodes[1].innerHTML = item.description;
 
-					var sendBtn = document.getElementById("sendToPhone");
-					$(sendBtn).off("click").on("click", function(e) {
-					    var _data = {
-					        token: "test",
-					        event_id: item.id
-					    };
-					    sendPhoneFromDispaly(_data, function(response) {
-					        console.log(response);
-					        if(response != "200")
-					            alert("Sent error!");
-					        else{
-					            alert("Sent successfully!");
-					            divDialog.style.display = "none";
-					        }
-					    });
-					});
-			} , false);
+            //add adress on
+            courseDiv.firstChild.nextElementSibling.childNodes[2].innerHTML = item.address;
+
+            var sendBtn = document.getElementById("sendToPhone");
+            $(sendBtn).off("click").on("click", function(e) {
+                var _data = {
+                    token: "test",
+                    event_id: item.id
+                };
+                sendPhoneFromDispaly(_data, function(response) {
+                    console.log(response);
+                    if(response != "200")
+                        alert("Sent error!");
+                    else{
+                        alert("Sent successfully!");
+                        divDialog.style.display = "none";
+                    }
+                });
+            });
+        } , false);
+
+      }
+      if(index == 1) {
+        // newNode.id = item.id;
+        // console.log(item.id);
+        // newNode.style.cursor = "pointer"
+        // newNode.className = "w3-display-container w3-padding-xlarge w3-round-large";
+        // newNode.style = "height: 260px";
+        //
+        // var paragraph = document.createElement("div");
+        var date = new Date(item.start_timestamp*1000);
+        // Hours part from the timestamp
+        var hours = date.getHours();
+        // Minutes part from the timestamp
+        var minutes = "0" + date.getMinutes();
+        var formattedStart = hours + ':' + minutes.substr(-2);
+        var date = new Date(item.end_timestamp*1000);
+        // Hours part from the timestamp
+        var hours = date.getHours();
+        // Minutes part from the timestamp
+        var minutes = "0" + date.getMinutes();
+        var formattedEnd = hours + ':' + minutes.substr(-2);
+        document.getElementById("course1").innerHTML = "<p style=\"font-size:200%;\">"+item.address + "</p><p style=\"font-size:200%;\">"+
+                            item.title + "</p><p style=\"font-size:200%;\">"+formattedStart+"-"+formattedEnd+"</p>";
+        // paragraph.className = "w3-display-topleft w3-xlarge w3-padding-xlarge";
+        //$(paragraph).height(260);
+
+        console.log(item.description);
+        // newNode.appendChild(paragraph);
+
+        //document.getElementById("course2").appendChild(newNode);
+
+        //create new popup window to download info of bubble
+        document.getElementById("course1").addEventListener("click", function() {
+            console.log(item.image_url);
+            var courseDiv = document.getElementById("courseDiv");
+            courseDiv.style.display = "block";
+            courseDiv.firstChild.nextElementSibling.childNodes[1].innerHTML = item.description;
+
+            //add adress on
+            courseDiv.firstChild.nextElementSibling.childNodes[2].innerHTML = item.address;
+
+            var sendBtn = document.getElementById("sendToPhone");
+            $(sendBtn).off("click").on("click", function(e) {
+                var _data = {
+                    token: "test",
+                    event_id: item.id
+                };
+                sendPhoneFromDispaly(_data, function(response) {
+                    console.log(response);
+                    if(response != "200")
+                        alert("Sent error!");
+                    else{
+                        alert("Sent successfully!");
+                        divDialog.style.display = "none";
+                    }
+                });
+            });
+        } , false);
+      }
+      if(index == 2) {
+        // newNode.id = item.id;
+        // console.log(item.id);
+        // newNode.style.cursor = "pointer"
+        // newNode.className = "w3-display-container w3-padding-xlarge w3-round-large";
+        // newNode.style = "height: 260px";
+        //
+        // var paragraph = document.createElement("div");
+        var date = new Date(item.start_timestamp*1000);
+        // Hours part from the timestamp
+        var hours = date.getHours();
+        // Minutes part from the timestamp
+        var minutes = "0" + date.getMinutes();
+        var formattedStart = hours + ':' + minutes.substr(-2);
+        var date = new Date(item.end_timestamp*1000);
+        // Hours part from the timestamp
+        var hours = date.getHours();
+        // Minutes part from the timestamp
+        var minutes = "0" + date.getMinutes();
+        var formattedEnd = hours + ':' + minutes.substr(-2);
+        document.getElementById("course2").innerHTML = "<p style=\"font-size:200%;\">"+item.address + "</p><p style=\"font-size:200%;\">"+
+                            item.title + "</p><p style=\"font-size:200%;\">"+formattedStart+"-"+formattedEnd+"</p>";
+        // paragraph.className = "w3-display-topleft w3-xlarge w3-padding-xlarge";
+        //$(paragraph).height(260);
+
+        console.log(item.description);
+        // newNode.appendChild(paragraph);
+
+        //document.getElementById("course2").appendChild(newNode);
+
+        //create new popup window to download info of bubble
+        document.getElementById("course2").addEventListener("click", function() {
+            console.log(item.image_url);
+            var courseDiv = document.getElementById("courseDiv");
+            courseDiv.style.display = "block";
+            courseDiv.firstChild.nextElementSibling.childNodes[1].innerHTML = item.description;
+
+            //add adress on
+            courseDiv.firstChild.nextElementSibling.childNodes[2].innerHTML = item.address;
+
+            var sendBtn = document.getElementById("sendToPhone");
+            $(sendBtn).off("click").on("click", function(e) {
+                var _data = {
+                    token: "test",
+                    event_id: item.id
+                };
+                sendPhoneFromDispaly(_data, function(response) {
+                    console.log(response);
+                    if(response != "200")
+                        alert("Sent error!");
+                    else{
+                        alert("Sent successfully!");
+                        divDialog.style.display = "none";
+                    }
+                });
+            });
+        } , false);
+      }
 		});
 	}
 }

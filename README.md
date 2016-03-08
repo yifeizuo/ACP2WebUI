@@ -1,14 +1,10 @@
-#Personalised-Public-Display--Web-UI
+#ACP2WebUI
 
-The Web UI is a part of Personalized Public Display project, where you can see personalised information such as ADs, events from facebook, or job info which you might interested in. Only when you are very close to public display, and your mobile phone has been detected by the public display, can you see the info there. And considering privacy, only you know what info on the screen is specialised for you.
+This Web UI is a part of a whole project about Personalised Public Display, where a public display is provided for displaying personalised info of users whose mobile phone has been detected when he/she is passing by the display. And the info shown here should not be aware by others, in other words, only you know that some info on the display is for you.
 
-The Web page on public display is working together with mobile phones, back-end server and a hardware to detected mobile phones.
+I am responsible for the Web part. The original design our team made is looking like:
 
-The UI our team designed is originally looks like:
-![alt tag](https://github.com/yifeizuo/screenshots/blob/master/Picture1.png)
+https://drive.google.com/drive/folders/0B8uhPtMnFl4NX29fdHRpVVRQaHM
 
-and when I finnished, it looks like:
-![alt tag](https://github.com/yifeizuo/screenshots/blob/master/Personalized%20Display.png)
-
-Also, you could interact with the public display and download useful info to you mobile phone.
-![alt tag](https://github.com/yifeizuo/screenshots/blob/master/Personalized%20Display%20job.png)
+but, when finnished, it looks like:
+![alt tag](https://drive.google.com/drive/folders/0B-bOsWn6w6TQbHd3M1dIVENHVjg)
