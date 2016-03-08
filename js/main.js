@@ -7,7 +7,7 @@ $(document).ready(function(){
 	console.log("TOKEN FROM URL:", token);
 
 	var NOTIFY_DEVICE = {
-		token: "test",
+		token: token,
 		event_id: 1
 	};
 
@@ -132,9 +132,10 @@ function updateBubble(bubbleList, divId) {
 					var sendBtn = document.getElementById("sendToPhone");
 					$(sendBtn).off("click").on("click", function(e) {
 					    var _data = {
-					        token: "test",
+					        token: token,
 					        event_id: item.id
 					    };
+							console.log(JSON.stringify(_data));
 					    sendPhoneFromDispaly(_data, function(response) {
 					        console.log(response);
 					        if(response != "200")
@@ -201,9 +202,10 @@ function update(oneEventList, divId) {
 					var sendBtn = document.getElementById("sendToPhone");
 					$(sendBtn).off("click").on("click", function(e) {
 					    var _data = {
-					        token: "test",
+					        token: token,
 					        event_id: item.id
 					    };
+							console.log(JSON.stringify(_data));
 					    sendPhoneFromDispaly(_data, function(response) {
 					        console.log(response);
 					        if(response != "200")
@@ -288,9 +290,10 @@ function updateCourse(courseList, divId) {
             var sendBtn = document.getElementById("sendToPhone");
             $(sendBtn).off("click").on("click", function(e) {
                 var _data = {
-                    token: "test",
+                    token: token,
                     event_id: item.id
                 };
+								console.log(JSON.stringify(_data));
                 sendPhoneFromDispaly(_data, function(response) {
                     console.log(response);
                     if(response != "200")
@@ -347,9 +350,10 @@ function updateCourse(courseList, divId) {
             var sendBtn = document.getElementById("sendToPhone");
             $(sendBtn).off("click").on("click", function(e) {
                 var _data = {
-                    token: "test",
+                    token: token,
                     event_id: item.id
                 };
+								console.log(JSON.stringify(_data));
                 sendPhoneFromDispaly(_data, function(response) {
                     console.log(response);
                     if(response != "200")
@@ -405,9 +409,10 @@ function updateCourse(courseList, divId) {
             var sendBtn = document.getElementById("sendToPhone");
             $(sendBtn).off("click").on("click", function(e) {
                 var _data = {
-                    token: "test",
+                    token: token,
                     event_id: item.id
                 };
+								console.log(JSON.stringify(_data));
                 sendPhoneFromDispaly(_data, function(response) {
                     console.log(response);
                     if(response != "200")
