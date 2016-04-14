@@ -47,7 +47,7 @@ function pollServer() {
 	getEvents(1, [categoriesMap['bubble']], updateBubble, 'bubbleStream');
 	getEvents(2, [categoriesMap['event']], update, 'events');
 	getEvents(2, [categoriesMap['job']], update, 'jobs');
-	getEvents(2, [categoriesMap['adverisement']], update, 'ads');
+	getEvents(2, [categoriesMap['advertisement']], update, 'ads');
 	getEvents(4, [categoriesMap['course']], updateCourse, 'courseMore');
   //getEvents(10, [categoriesMap['course']], updateCourseDouble, 'course1');
   //getEvents(10, [categoriesMap['course']], updateCourseDouble, 'course2');
